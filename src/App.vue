@@ -13,6 +13,13 @@
           <th></th>
           <th>Form</th>
           <th>GP</th>
+          <th>W</th>
+          <th>D</th>
+          <th>L</th>
+          <th>GF</th>
+          <th>GA</th>
+          <th>GD</th>
+          <th>Pts</th>
         </tr>
       </thead>
       <tbody>
@@ -22,10 +29,15 @@
             <img :src="team.strTeamBadge" class="w-[26px]" alt="team badge" />
           </td>
           <td>{{ team.strTeam }}</td>
+          <td>Coming soon...</td>
           <td>{{ team.intPlayed }}</td>
           <td>{{ team.intWin }}</td>
           <td>{{ team.intDraw }}</td>
           <td>{{ team.intLoss }}</td>
+          <td>{{ team.intGoalsFor }}</td>
+          <td>{{ team.intGoalsAgainst }}</td>
+          <td>{{ team.intGoalDifference }}</td>
+          <td>{{ team.intPoints }}</td>
         </tr>
       </tbody>
     </table>
