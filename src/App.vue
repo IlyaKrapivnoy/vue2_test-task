@@ -32,6 +32,7 @@
 <script>
 import axios from 'axios';
 import { addZero } from '../helpers';
+import { SOCCER_STATS_ENDPOINT } from '../data/constants';
 
 export default {
   name: 'App',
@@ -49,9 +50,7 @@ export default {
   },
   mounted() {
     axios
-      .get(
-        'https://www.thesportsdb.com/api/v1/json/3/lookuptable.php?l=4328&s=2020-2021'
-      )
+      .get(SOCCER_STATS_ENDPOINT)
       .then(response => {
         this.tableData = response.data.table;
       })
