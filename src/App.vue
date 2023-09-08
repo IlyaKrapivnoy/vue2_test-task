@@ -1,5 +1,7 @@
 <template>
-  <h1>Soccer Stats</h1>
+  <div>
+    <h1>Soccer Stats</h1>
+  </div>
 </template>
 
 <script>
