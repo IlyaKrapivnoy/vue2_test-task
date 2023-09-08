@@ -1,7 +1,1 @@
-export const addZero = number => {
-  if (number < 10) {
-    return `0${number}`;
-  } else {
-    return `${number}`;
-  }
-};
+export const addZero = number => (number < 10 ? `0${number}` : `${number}`);
