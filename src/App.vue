@@ -1,17 +1,12 @@
 <template>
-  <h1>
-    Soccer Stats
-  </h1>
+  <h1>Soccer Stats</h1>
 </template>
 
 <script>
-
 export default {
   name: 'App',
-  components: {
-
-  }
-}
+  components: {}
+};
 </script>
 
 <style></style>
