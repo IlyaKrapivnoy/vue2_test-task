@@ -1,6 +1,10 @@
 <template>
   <div>
-    <h1>Soccer Stats</h1>
+    <div class="flex justify-center my-10">
+      <h1 class="text-3xl font-bold uppercase text-green-500 tracking-wider">
+        Soccer Stats
+      </h1>
+    </div>
   </div>
 </template>
 
