@@ -18,6 +18,9 @@
       <tbody>
         <tr v-for="(team, index) in tableData" :key="index">
           <td>{{ addZero(index + 1) }}</td>
+          <td>
+            <img :src="team.strTeamBadge" class="w-[26px]" alt="team badge" />
+          </td>
           <td>{{ team.strTeam }}</td>
           <td>{{ team.intPlayed }}</td>
           <td>{{ team.intWin }}</td>
@@ -43,10 +46,7 @@ export default {
     };
   },
   methods: {
-    addZero,
-    logTeam(team) {
-      console.log(team);
-    }
+    addZero
   },
   mounted() {
     axios
