@@ -33,16 +33,16 @@
                 <img :src="team.strTeamBadge" alt="team badge" />
               </div>
             </td>
-            <td>{{ team.strTeam }}</td>
-            <td>Coming soon...</td>
-            <td>{{ team.intPlayed }}</td>
-            <td>{{ team.intWin }}</td>
-            <td>{{ team.intDraw }}</td>
-            <td>{{ team.intLoss }}</td>
-            <td>{{ team.intGoalsFor }}</td>
-            <td>{{ team.intGoalsAgainst }}</td>
-            <td>{{ team.intGoalDifference }}</td>
-            <td>{{ team.intPoints }}</td>
+            <td class="text-orange-300">{{ team.strTeam }}</td>
+            <td :class="tableCellClasses">Coming soon...</td>
+            <td :class="tableCellClasses">{{ team.intPlayed }}</td>
+            <td :class="tableCellClasses">{{ team.intWin }}</td>
+            <td :class="tableCellClasses">{{ team.intDraw }}</td>
+            <td :class="tableCellClasses">{{ team.intLoss }}</td>
+            <td :class="tableCellClasses">{{ team.intGoalsFor }}</td>
+            <td :class="tableCellClasses">{{ team.intGoalsAgainst }}</td>
+            <td :class="tableCellClasses">{{ team.intGoalDifference }}</td>
+            <td :class="tableCellClasses">{{ team.intPoints }}</td>
           </tr>
         </tbody>
       </table>
@@ -65,6 +65,11 @@ export default {
   },
   methods: {
     addZero
+  },
+  computed: {
+    tableCellClasses() {
+      return 'hover:text-orange-500 transform hover:translate-y-1 transition-transform duration-300';
+    }
   },
   mounted() {
     axios
