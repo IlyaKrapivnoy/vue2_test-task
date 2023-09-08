@@ -17,6 +17,7 @@
       </thead>
       <tbody>
         <tr v-for="(team, index) in tableData" :key="index">
+          <td>{{ addZero(index + 1) }}</td>
           <td>{{ team.strTeam }}</td>
           <td>{{ team.intPlayed }}</td>
           <td>{{ team.intWin }}</td>
@@ -30,6 +31,7 @@
 
 <script>
 import axios from 'axios';
+import { addZero } from '../helpers';
 
 export default {
   name: 'App',
@@ -40,6 +42,7 @@ export default {
     };
   },
   methods: {
+    addZero,
     logTeam(team) {
       console.log(team);
     }
