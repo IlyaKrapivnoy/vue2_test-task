@@ -34,7 +34,16 @@
               </div>
             </td>
             <td class="text-orange-300">{{ team.strTeam }}</td>
-            <td :class="tableCellClasses">Coming soon...</td>
+
+            <td class="min-w-[190px]">
+              <span
+                v-for="(char, index) in convertString(team.strForm)"
+                :key="index"
+                :class="getCharClass(char)"
+              >
+                {{ char }}
+              </span>
+            </td>
             <td :class="tableCellClasses">{{ team.intPlayed }}</td>
             <td :class="tableCellClasses">{{ team.intWin }}</td>
             <td :class="tableCellClasses">{{ team.intDraw }}</td>
@@ -52,7 +61,7 @@
 
 <script>
 import axios from 'axios';
-import { addZero } from '../helpers';
+import { addZero, convertString } from '../helpers';
 import { SOCCER_STATS_ENDPOINT } from '../data/constants';
 
 export default {
@@ -64,7 +73,20 @@ export default {
     };
   },
   methods: {
-    addZero
+    convertString,
+    addZero,
+    getCharClass(char) {
+      switch (char) {
+        case '+':
+          return 'rounded-full bg-green-500 w-5 h-5 inline-flex justify-center items-center text-white text-center ml-1';
+        case '-':
+          return 'rounded-full bg-gray-500 ml-1-500 w-5 h-5 inline-flex justify-center items-center text-white text-center ml-1';
+        case 'x':
+          return 'rounded-full bg-red-500 w-5 h-5 inline-flex justify-center items-center text-white text-center ml-1';
+        default:
+          return '';
+      }
+    }
   },
   computed: {
     tableCellClasses() {
