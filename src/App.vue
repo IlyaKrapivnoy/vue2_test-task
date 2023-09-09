@@ -24,7 +24,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(team, index) in tableData" :key="index">
+          <tr v-for="(team, index) in displayedTableData" :key="index">
             <td>{{ addZero(index + 1) }}</td>
             <td>
               <div
@@ -70,6 +70,13 @@
           </tr>
         </tbody>
       </table>
+      <button
+        v-if="displayedTableData.length < tableData.length"
+        @click="loadMore"
+        class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Load more
+      </button>
     </section>
   </main>
 </template>
@@ -84,7 +91,11 @@ export default {
   components: {},
   data() {
     return {
-      tableData: []
+      // track the number of displayed rows (initially) and additional rows to load
+      initialRowCount: 5,
+      rowsToAdd: 3,
+      // store all displayed rows in here
+      displayedTableData: []
     };
   },
   methods: {
@@ -107,6 +118,11 @@ export default {
     },
     displayField(value) {
       return value || 'Coming soon...';
+    },
+    loadMore() {
+      const currentRowCount = this.displayedTableData.length;
+      const newRowCount = currentRowCount + this.rowsToAdd;
+      this.displayedTableData = this.tableData.slice(0, newRowCount);
     }
   },
   computed: {
@@ -119,6 +135,8 @@ export default {
       .get(SOCCER_STATS_ENDPOINT)
       .then(response => {
         this.tableData = response.data.table;
+        // Initially, display the first 'initialRowCount' rows
+        this.displayedTableData = this.tableData.slice(0, this.initialRowCount);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
