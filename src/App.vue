@@ -35,7 +35,7 @@
             </td>
             <td
               class="text-orange-300"
-              :title="`UPDATED AT: ${team.dateUpdated}`"
+              :data-tooltip="`LAST UPDATED AT: ${team.dateUpdated}`"
             >
               {{ team.strTeam }}
             </td>
