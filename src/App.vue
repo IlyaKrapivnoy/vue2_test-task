@@ -73,18 +73,22 @@ export default {
     }
   },
   computed: {
+    // add to reduce amount of repeated code
     tableCellClasses() {
       return 'hover:text-orange-500 transform hover:translate-y-1 transition-transform duration-300';
     }
   },
   mounted() {
+    // getting data from given API
     axios
+      // make endpoint a variable to reduce possibility of typos
       .get(SOCCER_STATS_ENDPOINT)
       .then(response => {
         this.tableData = response.data.table;
         // Initially, display the first 'initialRowCount' rows
         this.displayedTableData = this.tableData.slice(0, this.initialRowCount);
       })
+      // display an error to console
       .catch(error => {
         console.error('Error fetching data:', error);
       });

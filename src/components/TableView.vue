@@ -110,8 +110,10 @@ export default {
     isBusy: Boolean
   },
   methods: {
+    // imported functions
     convertString,
     addZero,
+    // change form column data and style it
     getCharClass(char) {
       switch (char) {
         case '+':
