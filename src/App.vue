@@ -12,15 +12,15 @@
             <th></th>
             <th></th>
             <th></th>
-            <th>Form</th>
-            <th>GP</th>
-            <th>W</th>
-            <th>D</th>
-            <th>L</th>
-            <th>GF</th>
-            <th>GA</th>
-            <th>GD</th>
-            <th>Pts</th>
+            <th :class="setThClasses()">Form</th>
+            <th :class="setThClasses()">GP</th>
+            <th :class="setThClasses()">W</th>
+            <th :class="setThClasses()">D</th>
+            <th :class="setThClasses()">L</th>
+            <th :class="setThClasses()">GF</th>
+            <th :class="setThClasses()">GA</th>
+            <th :class="setThClasses()">GD</th>
+            <th :class="setThClasses()">Pts</th>
           </tr>
         </thead>
         <tbody>
@@ -33,7 +33,12 @@
                 <img :src="team.strTeamBadge" alt="team badge" />
               </div>
             </td>
-            <td class="text-orange-300">{{ team.strTeam }}</td>
+            <td
+              class="text-orange-300"
+              :title="`UPDATED AT: ${team.dateUpdated}`"
+            >
+              {{ team.strTeam }}
+            </td>
 
             <td class="min-w-[190px]">
               <span
@@ -86,6 +91,9 @@ export default {
         default:
           return '';
       }
+    },
+    setThClasses() {
+      return 'font-bold';
     }
   },
   computed: {
