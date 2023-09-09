@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <div class="flex justify-center my-10">
-      <h1 class="sm:text-3xl font-bold uppercase text-green-500 tracking-wider">
-        Soccer Stats
-      </h1>
-    </div>
-    <div class="overflow-x-auto">
+  <main>
+    <h1
+      class="flex justify-center mt-2 mb-10 sm:text-3xl font-bold uppercase text-green-500 tracking-wider"
+    >
+      Soccer Stats
+    </h1>
+    <section class="overflow-x-auto">
       <table class="min-w-full">
         <thead>
           <tr>
@@ -60,8 +60,8 @@
           </tr>
         </tbody>
       </table>
-    </div>
-  </div>
+    </section>
+  </main>
 </template>
 
 <script>
