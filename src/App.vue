@@ -1,95 +1,28 @@
 <template>
   <main class="p-0 my-6">
-    <h1
-      class="flex justify-center mt-2 mb-10 sm:text-3xl font-bold uppercase text-green-500 tracking-wider"
-    >
-      Soccer Stats
-    </h1>
+    <title-view :title="`Soccer Stats`" />
     <section class="overflow-x-auto">
-      <table class="min-w-full">
-        <thead>
-          <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th :class="setThClasses()">Form</th>
-            <th :class="setThClasses()">GP</th>
-            <th :class="setThClasses()">W</th>
-            <th :class="setThClasses()">D</th>
-            <th :class="setThClasses()">L</th>
-            <th :class="setThClasses()">GF</th>
-            <th :class="setThClasses()">GA</th>
-            <th :class="setThClasses()">GD</th>
-            <th :class="setThClasses()">Pts</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(team, index) in displayedTableData" :key="index">
-            <td>{{ addZero(index + 1) }}</td>
-            <td>
-              <div
-                class="flex justify-center items-center w-10 h-10 md:w-16 md:h-16 lg:w-20 lg:h-20"
-              >
-                <img :src="team.strTeamBadge" alt="team badge" />
-              </div>
-            </td>
-            <td
-              class="text-orange-300"
-              :data-tooltip="`LAST UPDATE: ${team.dateUpdated}`"
-            >
-              {{ displayField(team.strTeam) }}
-            </td>
-
-            <td class="min-w-[190px]">
-              <span
-                v-for="(char, index) in convertString(team.strForm)"
-                :key="index"
-                :class="getCharClass(char)"
-              >
-                {{ char }}
-              </span>
-            </td>
-            <td :class="tableCellClasses">
-              {{ displayField(team.intPlayed) }}
-            </td>
-            <td :class="tableCellClasses">{{ displayField(team.intWin) }}</td>
-            <td :class="tableCellClasses">{{ displayField(team.intDraw) }}</td>
-            <td :class="tableCellClasses">{{ displayField(team.intLoss) }}</td>
-            <td :class="tableCellClasses">
-              {{ displayField(team.intGoalsFor) }}
-            </td>
-            <td :class="tableCellClasses">
-              {{ displayField(team.intGoalsAgainst) }}
-            </td>
-            <td :class="tableCellClasses">
-              {{ displayField(team.intGoalDifference) }}
-            </td>
-            <td :class="tableCellClasses">
-              {{ displayField(team.intPoints) }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <button
-        :aria-busy="isBusy"
-        v-if="displayedTableData.length < tableData.length"
-        @click="loadMore"
-        class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        Load more
-      </button>
+      <table-view :tableData="displayedTableData" />
+      <reusable-button
+        :isBusy="isBusy"
+        :showLoadMoreButton="displayedTableData.length < tableData.length"
+        :buttonText="`Load more`"
+        @loadMore="loadMore"
+      />
     </section>
   </main>
 </template>
 
 <script>
 import axios from 'axios';
-import { addZero, convertString } from '../helpers';
 import { SOCCER_STATS_ENDPOINT } from '../data/constants';
+import TitleView from '@/components/TitleView.vue';
+import ReusableButton from '@/components/ReusableButton.vue';
+import TableView from '@/components/TableView.vue';
 
 export default {
   name: 'App',
-  components: {},
+  components: { ReusableButton, TitleView, TableView },
   data() {
     return {
       // initial table data
@@ -104,8 +37,6 @@ export default {
     };
   },
   methods: {
-    convertString,
-    addZero,
     getCharClass(char) {
       switch (char) {
         case '+':
