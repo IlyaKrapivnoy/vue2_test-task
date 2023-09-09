@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="p-0 my-6">
     <h1
       class="flex justify-center mt-2 mb-10 sm:text-3xl font-bold uppercase text-green-500 tracking-wider"
     >
@@ -71,6 +71,7 @@
         </tbody>
       </table>
       <button
+        :aria-busy="isBusy"
         v-if="displayedTableData.length < tableData.length"
         @click="loadMore"
         class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -91,11 +92,15 @@ export default {
   components: {},
   data() {
     return {
+      // initial table data
+      tableData: [],
       // track the number of displayed rows (initially) and additional rows to load
       initialRowCount: 5,
       rowsToAdd: 3,
       // store all displayed rows in here
-      displayedTableData: []
+      displayedTableData: [],
+      // show btn loader
+      isBusy: false
     };
   },
   methods: {
@@ -120,9 +125,20 @@ export default {
       return value || 'Coming soon...';
     },
     loadMore() {
-      const currentRowCount = this.displayedTableData.length;
-      const newRowCount = currentRowCount + this.rowsToAdd;
-      this.displayedTableData = this.tableData.slice(0, newRowCount);
+      // show btn loader
+      this.isBusy = true;
+      // I've added a delay for you to see this loader on Load more btn
+      setTimeout(() => {
+        const currentRowCount = this.displayedTableData.length;
+        const newRowCount = currentRowCount + this.rowsToAdd;
+        this.displayedTableData = this.tableData.slice(0, newRowCount);
+      }, 1000);
+
+      setTimeout(() => {
+        // Set back to false after the delay
+        this.isBusy = false;
+        // Adjust the delay time as needed (in milliseconds)
+      }, 1000);
     }
   },
   computed: {
