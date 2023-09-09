@@ -34,13 +34,16 @@
         </td>
 
         <td class="min-w-[190px]">
-          <span
-            v-for="(char, index) in convertString(team.strForm)"
-            :key="index"
-            :class="getCharClass(char)"
-          >
-            {{ char }}
-          </span>
+          <div v-if="!isBusy">
+            <span
+              v-for="(char, index) in convertString(team.strForm)"
+              :key="index"
+              :class="getCharClass(char)"
+            >
+              {{ char }}
+            </span>
+          </div>
+          <div v-else class="flex justify-center animate-pulse">Loading...</div>
         </td>
         <!-- Conditionally display loading dots when isBusy is true -->
         <td :class="[tableCellClasses, isBusy ? 'loading-cell' : '']">
