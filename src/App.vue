@@ -35,9 +35,9 @@
             </td>
             <td
               class="text-orange-300"
-              :data-tooltip="`LAST UPDATED AT: ${team.dateUpdated}`"
+              :data-tooltip="`LAST UPDATE: ${team.dateUpdated}`"
             >
-              {{ team.strTeam }}
+              {{ displayField(team.strTeam) }}
             </td>
 
             <td class="min-w-[190px]">
@@ -49,14 +49,24 @@
                 {{ char }}
               </span>
             </td>
-            <td :class="tableCellClasses">{{ team.intPlayed }}</td>
-            <td :class="tableCellClasses">{{ team.intWin }}</td>
-            <td :class="tableCellClasses">{{ team.intDraw }}</td>
-            <td :class="tableCellClasses">{{ team.intLoss }}</td>
-            <td :class="tableCellClasses">{{ team.intGoalsFor }}</td>
-            <td :class="tableCellClasses">{{ team.intGoalsAgainst }}</td>
-            <td :class="tableCellClasses">{{ team.intGoalDifference }}</td>
-            <td :class="tableCellClasses">{{ team.intPoints }}</td>
+            <td :class="tableCellClasses">
+              {{ displayField(team.intPlayed) }}
+            </td>
+            <td :class="tableCellClasses">{{ displayField(team.intWin) }}</td>
+            <td :class="tableCellClasses">{{ displayField(team.intDraw) }}</td>
+            <td :class="tableCellClasses">{{ displayField(team.intLoss) }}</td>
+            <td :class="tableCellClasses">
+              {{ displayField(team.intGoalsFor) }}
+            </td>
+            <td :class="tableCellClasses">
+              {{ displayField(team.intGoalsAgainst) }}
+            </td>
+            <td :class="tableCellClasses">
+              {{ displayField(team.intGoalDifference) }}
+            </td>
+            <td :class="tableCellClasses">
+              {{ displayField(team.intPoints) }}
+            </td>
           </tr>
         </tbody>
       </table>
@@ -94,6 +104,9 @@ export default {
     },
     setThClasses() {
       return 'font-bold';
+    },
+    displayField(value) {
+      return value || 'Coming soon...';
     }
   },
   computed: {
