@@ -2,7 +2,7 @@
   <main class="p-0 my-6">
     <title-view :title="`Soccer Stats`" />
     <section class="overflow-x-auto">
-      <table-view :tableData="displayedTableData" />
+      <table-view :tableData="displayedTableData" :isBusy="isBusy" />
       <reusable-button
         :isBusy="isBusy"
         :showLoadMoreButton="displayedTableData.length < tableData.length"
