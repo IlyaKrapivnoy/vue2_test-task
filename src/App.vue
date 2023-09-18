@@ -14,10 +14,10 @@
 </template>
 
 <script>
-import axios from 'axios';
 import TitleView from '@/components/TitleView.vue';
 import ReusableButton from '@/components/ReusableButton.vue';
 import TableView from '@/components/TableView.vue';
+import api from '../services/api';
 
 export default {
   name: 'App',
@@ -79,11 +79,9 @@ export default {
   },
   mounted() {
     // getting data from given API
-    axios
+    api
       // make endpoint a variable to reduce possibility of typos
-      .get(
-        'https://www.thesportsdb.com/api/v1/json/3/lookuptable.php?l=4328&s=2020-2021'
-      )
+      .get('/api/v1/json/3/lookuptable.php?l=4328&s=2020-2021')
       .then(response => {
         this.tableData = response.data.table;
         // Initially, display the first 'initialRowCount' rows
