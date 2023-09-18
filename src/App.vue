@@ -78,7 +78,7 @@ export default {
     }
   },
   mounted() {
-    // getting data from given API
+    // getting data from given API, using axios instance
     api
       // make endpoint a variable to reduce possibility of typos
       .get('/api/v1/json/3/lookuptable.php?l=4328&s=2020-2021')
