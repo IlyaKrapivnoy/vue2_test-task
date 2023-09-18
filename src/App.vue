@@ -15,7 +15,6 @@
 
 <script>
 import axios from 'axios';
-import { SOCCER_STATS_ENDPOINT } from '../data/constants';
 import TitleView from '@/components/TitleView.vue';
 import ReusableButton from '@/components/ReusableButton.vue';
 import TableView from '@/components/TableView.vue';
@@ -82,7 +81,9 @@ export default {
     // getting data from given API
     axios
       // make endpoint a variable to reduce possibility of typos
-      .get(SOCCER_STATS_ENDPOINT)
+      .get(
+        'https://www.thesportsdb.com/api/v1/json/3/lookuptable.php?l=4328&s=2020-2021'
+      )
       .then(response => {
         this.tableData = response.data.table;
         // Initially, display the first 'initialRowCount' rows
